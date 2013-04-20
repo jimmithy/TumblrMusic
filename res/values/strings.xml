@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tumblr Music</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="oauth_login_btn">Login</string>
+    <string name="no_activity_found">No app found to launch this intent</string>
+    <string name="login_failed">Login failed. Please try again</string>
+    <string name="no_audio_posts">Sorry, no audio posts were found.</string>
+
+</resources>
