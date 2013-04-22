@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jamesob.tumblrmusic.objects.AudioPost;
@@ -13,19 +13,17 @@ import com.jamesob.tumblrmusic.objects.AudioPost;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class TracksAdapter extends ArrayAdapter<AudioPost> {
+public class TracksAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private ArrayList<AudioPost> mItems = new ArrayList<AudioPost>();
 
     public TracksAdapter(Context context) {
-        super(context, android.R.layout.simple_list_item_2);
+        super();
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    @Override
     public void addAll(Collection<? extends AudioPost> collection) {
-        super.addAll(collection);
         mItems.addAll(collection);
     }
 
@@ -37,12 +35,6 @@ public class TracksAdapter extends ArrayAdapter<AudioPost> {
     @SuppressWarnings("unchecked")
     public void addAll(ArrayList<Parcelable> parcelableArrayList) {
         addAll((Collection<? extends AudioPost>) parcelableArrayList);
-    }
-
-    @Override
-    public void clear() {
-        super.clear();
-        mItems.clear();
     }
 
     /**
@@ -85,5 +77,24 @@ public class TracksAdapter extends ArrayAdapter<AudioPost> {
     public static class ViewHolder {
         public TextView user;
         public TextView track;
+    }
+
+    @Override
+    public int getCount() {
+        return mItems.size();
+    }
+
+    @Override
+    public AudioPost getItem(int position) {
+        return mItems.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return mItems.get(position).hashCode();
+    }
+
+    public void clear() {
+        mItems.clear();
     }
 }
